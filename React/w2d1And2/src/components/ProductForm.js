@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 } from "uuid";
-const ProductForm = () => {
+const ProductForm = (props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
+  const { products, setProducts } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,11 +16,19 @@ const ProductForm = () => {
         category: category,
         image: "",
       };
+      setProducts([product, ...products]);
       console.log("PRODUCT", product);
     } else {
       alert("Please fill out all fields");
     }
   };
+  // useEffect(() => {
+  //   if (name.length > 0 && name.length < 5) {
+  //     setError(true);
+  //   } else {
+  //     setError(false);
+  //   }
+  // }, [name]);
 
   return (
     <form
@@ -40,9 +49,6 @@ const ProductForm = () => {
         id="name"
         value={name}
         onChange={(e) => {
-          console.log("EVENT", e);
-          console.log("EVENT target", e.target);
-          console.log("EVENT target value", e.target.value);
           setName(e.target.value);
         }}
       />
@@ -51,8 +57,10 @@ const ProductForm = () => {
           Product name must be at least 5 characters
         </p>
       )}
-      {/* {name.length > 1 && name.length < 5 ? (
-        <p>Product name must be at least 5 characters</p>
+      {/* {name.length > 0 && name.length < 5 && ? (
+        <p style={{ color: "red" }}>
+          Product name must be at least 5 characters
+        </p>
       ) : null} */}
       <label htmlFor="price">Price: </label>
       <input

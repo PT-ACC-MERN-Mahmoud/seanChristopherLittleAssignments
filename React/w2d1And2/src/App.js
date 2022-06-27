@@ -1,9 +1,10 @@
 import "./App.css";
 import Product from "./components/Product";
 import ProductForm from "./components/ProductForm";
+import { useState } from "react";
 
 function App() {
-  const products = [
+  const [products, setProducts] = useState([
     {
       id: 1,
       name: "iPhone 13",
@@ -32,13 +33,28 @@ function App() {
       cat: "watch",
       image: "",
     },
-  ];
+  ]);
+
   return (
     <div className="App">
-      <ProductForm />
-      {products.map((product, index) => (
-        <Product product={product} key={product.id} />
-      ))}
+      <ProductForm products={products} setProducts={setProducts} />
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
+        {products.map((product, index) => (
+          <Product
+            product={product}
+            key={product.id}
+            products={products}
+            setProducts={setProducts}
+          />
+        ))}
+      </div>
     </div>
   );
 }
