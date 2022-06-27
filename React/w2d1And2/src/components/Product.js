@@ -6,7 +6,7 @@ const Product = (props) => {
 
   const updatePrice = () => {
     const newPrice = Math.floor(Math.random() * 500);
-    const newProducts = products.maop((p) => {
+    const newProducts = products.map((p) => {
       if (p.id === product.id) {
         const updatedProduct = { ...p, price: p.price - newPrice };
         return updatedProduct;
