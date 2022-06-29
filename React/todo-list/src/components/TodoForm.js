@@ -10,12 +10,14 @@ const TodoForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (name && description && due) {
       const todo = {
         id: v4(),
         name: name,
         description: description,
         due: due,
+        completed: false,
       };
       setTodos([todo, ...todos]);
     } else {

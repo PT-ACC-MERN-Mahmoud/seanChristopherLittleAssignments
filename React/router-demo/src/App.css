@@ -2,8 +2,9 @@
   text-align: center;
 }
 
-.completed {
-  text-decoration: line-through;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {

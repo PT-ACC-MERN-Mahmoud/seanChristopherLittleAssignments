@@ -9,9 +9,8 @@ function App() {
   return (
     <div className="App">
       <TodoForm todos={todos} setTodos={setTodos} />
-      {todos.map((todo, index) => (
-        <Todo todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
-      ))}
+
+      <Todo todos={todos} setTodos={setTodos} />
     </div>
   );
 }
