@@ -18,7 +18,7 @@ const Home = () => {
       {pokemon.map((poke, index) => (
         <div key="index">
           <h2>{poke.name}</h2>
-          <img src={poke.front_default} alt="pokemon" />
+          <img src={poke.front_default} alt={poke.name} />
         </div>
       ))}
     </div>
