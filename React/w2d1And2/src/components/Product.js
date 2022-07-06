@@ -1,5 +1,7 @@
 //rafce
 import { useState } from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 const Product = (props) => {
   const { product, products, setProducts } = props;
@@ -19,17 +21,24 @@ const Product = (props) => {
     const filteredProducts = products.filter((p) => p.id !== product.id);
     setProducts(filteredProducts);
   };
+
   return (
-    <div>
-      <h2>{product.name}</h2>
-      <p>Price: {product.price}$</p>
-      <p>Category: {product.category}</p>
-      <img src="{product.image}" alt="product image" />
-      <br />
-      <br />
-      <button onClick={updatePrice}>Change Price</button>
-      <button onClick={handleDelete}>Delete</button>
-    </div>
+    <Card style={{ width: "18rem" }}>
+      <Card.Img variant="top" src="{product.image}" height="150px" />
+      <Card.Title>{product.name}</Card.Title>
+      <Card.Body>
+        <Card.Text>
+          <p>Price: {product.price}$</p>
+          <p>Category: {product.category}</p>
+        </Card.Text>
+        <Button variant="primary" onClick={updatePrice} className="mx-4">
+          Change Price
+        </Button>
+        <Button variant="danger" onClick={handleDelete}>
+          Delete
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 

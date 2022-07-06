@@ -2,24 +2,23 @@ import React from "react";
 import axios from "axios"; // npm i axios
 import { useEffect, useState } from "react";
 const Home = () => {
-  const [digimons, setDigimons] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
+
   useEffect(() => {
     axios
-      .get("https://digimon-api.vercel.app/api/digimon")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=807")
       .then((res) => {
-        console.log("THE DIGIMON DATA", res.data);
-        setDigimons(res.data);
+        setPokemon(res.data);
       })
       .catch((err) => console.error("ERROR WITH AXIOS", err.message));
   }, []);
 
   return (
     <div>
-      {digimons.map((digi, index) => (
+      {pokemon.map((poke, index) => (
         <div key="index">
-          <h2>{digi.name}</h2>
-          <p>level: {digi.level}</p>
-          <img src={digi.img} alt="digimon" />
+          <h2>{poke.name}</h2>
+          <img src={poke.front_default} alt="pokemon" />
         </div>
       ))}
     </div>

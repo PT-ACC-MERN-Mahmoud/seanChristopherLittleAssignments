@@ -2,6 +2,9 @@ import "./App.css";
 import Product from "./components/Product";
 import ProductForm from "./components/ProductForm";
 import { useState } from "react";
+import Contaner from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function App() {
   const [products, setProducts] = useState([
@@ -36,26 +39,25 @@ function App() {
   ]);
 
   return (
-    <div className="App">
-      <ProductForm products={products} setProducts={setProducts} />
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "space-around",
-        }}
-      >
+    <Contaner>
+      <Row>
+        <Col className="mb-4">
+          <ProductForm products={products} setProducts={setProducts} />
+        </Col>
+      </Row>
+      <Row>
         {products.map((product, index) => (
-          <Product
-            product={product}
-            key={product.id}
-            products={products}
-            setProducts={setProducts}
-          />
+          <Col>
+            <Product
+              product={product}
+              key={product.id}
+              products={products}
+              setProducts={setProducts}
+            />
+          </Col>
         ))}
-      </div>
-    </div>
+      </Row>
+    </Contaner>
   );
 }
 
